@@ -1,4 +1,4 @@
-+function() {
++ function() {
     "use strict";
     for (var a = 0, b = ["ms", "moz", "webkit", "o"], c = 0; c < b.length && !window.requestAnimationFrame; ++c) window.requestAnimationFrame = window[b[c] + "RequestAnimationFrame"], window.cancelAnimationFrame = window[b[c] + "CancelAnimationFrame"] || window[b[c] + "CancelRequestAnimationFrame"];
     window.requestAnimationFrame || (window.requestAnimationFrame = function(b) {
@@ -52,8 +52,8 @@ $(function() {
 
     function a(a) {
         this.options = a || {};
-        var d, e, f, g, h, i = 320,
-            j = 480,
+        var d, e, f, g, h, i = 400,
+            j = 600,
             k = this.options.width || i,
             l = this.options.height || j,
             m = k / i,
@@ -105,46 +105,14 @@ $(function() {
                 UPDATE: 7,
                 DEAD: 8
             },
-            L = K.DEAD,
-            M = [{
-                level: 1,
-                from: 270,
-                per: 25,
-                prize: 5
-            }, {
-                level: 2,
-                from: 0,
-                per: 25,
-                prize: 10
-            }, {
-                level: 3,
-                from: 90,
-                per: 20,
-                prize: 20
-            }, {
-                level: 4,
-                from: 162,
-                per: 15,
-                prize: 50
-            }, {
-                level: 5,
-                from: 216,
-                per: 10,
-                prize: 100
-            }, {
-                level: 6,
-                from: 252,
-                per: 5,
-                prize: "hero13"
-            }],
-            N = 13;
+            L = K.DEAD;
         return this.init = function() {
             this.initVars(), this.bindEvents(), this.reset()
         }, this.initVars = function() {
             this.$game = $("#game").css({
                 width: k + "px",
                 height: l + "px"
-            }), H, this.$gametitle = $(".game-title"), this.$gameover = $(".game-over"), this.$welcome = $(".welcome"), this.$share = $(".share"), this.$livescore = $(".live-score"), this.$instruction = $(".instruction"), this.$about = $(".about"), this.$perfect = $(".perfect"), this.$score = $(".score"), this.$best = $(".best"), this.$total = $(".total"), this.$movedStick = $("nothing"), this._currentState = K.WELCOME, this.total = parseInt(store("total") || 0, 10), this.$total.text(this.total), this.heroInit(), this.switchHero(this.hero)
+            }), H, this.$gametitle = $(".game-title"), this.$gameover = $(".game-over"), this.$welcome = $(".welcome"), this.$livescore = $(".live-score"), this.$instruction = $(".instruction"), this.$about = $(".about"), this.$perfect = $(".perfect"), this.$score = $(".score"), this.$best = $(".best"), this.$total = $(".total"), this.$movedStick = $("nothing"), this._currentState = K.WELCOME, this.total = parseInt(store("total") || 0, 10), this.$total.text(this.total), this.heroInit(), this.switchHero(this.hero)
         }, this.heroInit = function() {
             this.hero = store("hero") || 11, this.$heros = $(".hero-p");
             for (var a = 0; a < J.length; a++) {
@@ -414,8 +382,7 @@ $(function() {
         }, this.update = function() {
             this.updateScore(this.inc), this.updateTotal(1), this.$box1.remove(), this.$box1 = this.$box2, this.BOX1 = this.BOX2, this.$box2 = this.$box3, this.BOX2 = this.BOX3, this.$movedStick.remove(), this.$movedStick = this.$activeStick, this.next(K.BEGIN)
         }, this.dead = function() {
-            this._getRandom(1, 100) <= 70 && setTimeout(function() {
-            }, this._getRandom(500, 1500)), this.$livescore.hide(), this.$gameover.show(), this.$game.addClass("bounce"), this.$hero.css({
+            this._getRandom(1, 100) <= 70 && setTimeout(function() {}, this._getRandom(500, 1500)), this.$livescore.hide(), this.$gameover.show(), this.$game.addClass("bounce"), this.$hero.css({
                 "transition-duration": "",
                 "-webkit-transition-duration": ""
             })
