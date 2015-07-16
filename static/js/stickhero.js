@@ -64,7 +64,7 @@ $(function() {
             r = o - q,
             s = p,
             t = 4,
-            u = 3,
+            u = 4,
             v = 6,
             w = 5,
             x = 3,
@@ -112,7 +112,7 @@ $(function() {
             this.$game = $("#game").css({
                 width: k + "px",
                 height: l + "px"
-            }), H, this.$gametitle = $(".game-title"), this.$gameover = $(".game-over"), this.$welcome = $(".welcome"), this.$livescore = $(".live-score"), this.$instruction = $(".instruction"), this.$about = $(".about"), this.$perfect = $(".perfect"), this.$score = $(".score"), this.$best = $(".best"), this.$total = $(".total"), this.$movedStick = $("nothing"), this._currentState = K.WELCOME, this.total = parseInt(store("total") || 0, 10), this.$total.text(this.total), this.heroInit(), this.switchHero(this.hero)
+            }), H, this.$gametitle = $(".game-title"), this.$gameover = $(".game-over"), this.$welcome = $(".welcome"), this.$livescore = $(".live-score"), this.$instruction = $(".instruction"), this.$about = $(".about"), this.$perfect = $(".perfect"), this.$score = $(".score"), this.$best = $(".best"), this.$movedStick = $("nothing"), this._currentState = K.WELCOME, this.heroInit(), this.switchHero(this.hero)
         }, this.heroInit = function() {
             this.hero = store("hero") || 11, this.$heros = $(".hero-p");
             for (var a = 0; a < J.length; a++) {
@@ -158,11 +158,6 @@ $(function() {
                 a.reset(), a.next(K.PRE_BEGIN)
             }), $(".btn-home").on(I, function() {
                 a.reset(), a.next(K.WELCOME)
-            }), $(document).on(I, ".heropick .wrapper", function(b) {
-                var c = $(b.currentTarget),
-                    d = parseInt(c.data("price"), 10),
-                    e = c.data("src");
-                c.hasClass("locked") ? a.total >= d ? (a.updateTotal(-d), a.unlockHero(e)) : b.preventDefault() : (a.switchHero(e), $(document).off(I, ".overlay"), a.$heropick.removeClass("in")), b.stopPropagation()
             }), $(document).on("mousedown touchstart", function(a) {
                 F = !0, a.preventDefault()
             }), $(document).on("mouseup touchend", function() {
@@ -314,9 +309,8 @@ $(function() {
                 "-webkit-transition-timing-function": ""
             }), this.$feet.removeClass("walk"), this.$activeStick.addClass("died");
             var a = Math.floor(this.score / y);
-            a && this.updateDraw(a)
         }, this.update = function() {
-            this.updateScore(this.inc), this.updateTotal(1), this.$box1.remove(), this.$box1 = this.$box2, this.BOX1 = this.BOX2, this.$box2 = this.$box3, this.BOX2 = this.BOX3, this.$movedStick.remove(), this.$movedStick = this.$activeStick, this.next(K.BEGIN)
+            this.updateScore(this.inc), this.$box1.remove(), this.$box1 = this.$box2, this.BOX1 = this.BOX2, this.$box2 = this.$box3, this.BOX2 = this.BOX3, this.$movedStick.remove(), this.$movedStick = this.$activeStick, this.next(K.BEGIN)
         }, this.dead = function() {
             this._getRandom(1, 100) <= 70 && setTimeout(function() {}, this._getRandom(500, 1500)), this.$livescore.hide(), this.$gameover.show(), this.$game.addClass("bounce"), this.$hero.css({
                 "transition-duration": "",
@@ -324,8 +318,6 @@ $(function() {
             })
         }, this.updateScore = function(a) {
             void 0 !== a && (this.score += a), this.best < this.score && (this.best = this.score, store("best", this.best)), this.$livescore.text(this.score), this.$score.text(this.score), this.$best.text(this.best)
-        }, this.updateTotal = function(a) {
-            void 0 !== a && (this.total += a), store("total", this.total), this.$total.text(this.total)
         }, this._createBox = function() {
             return {
                 left: this._getRandom(A, B),
