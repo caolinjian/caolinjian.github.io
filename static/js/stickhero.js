@@ -126,33 +126,7 @@ $(function() {
                     height: e + "px"
                 }), (11 === b || 2 === b || 4 === b) && f.find(".hat").css({
                     width: d + 2 + "px"
-                }), 1 === b && f.find(".mouse").css({
-                    width: Math.floor(J[a][3] * m) + "px"
-                }), 4 === b && f.find(".body").css({
-                    width: Math.floor(J[a][3] * m) + "px",
-                    height: Math.floor(J[a][4] * m) + "px",
-                    top: Math.floor(J[a][5] * m) + "px"
-                }), 5 === b && (f.find(".hair-up").css({
-                    width: Math.floor(J[a][3] * m) + "px",
-                    height: Math.floor(J[a][5] * m) + "px"
-                }), f.find(".hair-down").css({
-                    width: Math.floor(J[a][4] * m) + "px",
-                    height: Math.floor(J[a][5] * m) + "px"
-                }), f.find(".ribbon").css({
-                    "border-right-width": Math.floor(J[a][6] * m) + "px"
-                })), 6 === b && (f.find(".top").css({
-                    width: Math.floor(J[a][3] * m) + "px",
-                    height: Math.floor(J[a][4] * m) + "px"
-                }), f.find(".top-front").css({
-                    width: Math.floor(J[a][5] * m) + "px",
-                    height: Math.floor(J[a][6] * m) + "px"
-                })), 7 === b && (f.find(".hat1").css({
-                    left: Math.floor(J[a][3] * m) + "px"
-                }), f.find(".hat2").css({
-                    left: Math.floor(J[a][4] * m) + "px"
-                }), f.find(".hat3").css({
-                    left: Math.floor(J[a][5] * m) + "px"
-                })), 9 === b && (f.find(".body").css({
+                }), 9 === b && (f.find(".body").css({
                     width: d + "px",
                     height: e + "px",
                     "border-radius": d + "px/" + e + "px"
@@ -166,54 +140,16 @@ $(function() {
                 }), f.find(".hand").css({
                     width: Math.floor(J[a][7] * m) + "px",
                     height: Math.floor(J[a][8] * m) + "px"
-                })), 10 === b && f.find(".mouse").css({
-                    width: Math.floor(J[a][3] * m) + "px",
-                    height: Math.floor(J[a][4] * m) + "px",
-                    "border-radius": Math.floor(J[a][3] * m) + "px/" + Math.floor(J[a][4] * m) + "px"
-                }), 12 === b && (f.find(".body").css({
-                    width: d + "px",
-                    height: e + "px"
-                }), f.find(".inside").css({
-                    width: Math.floor(J[a][3] * m) + "px",
-                    height: Math.floor(J[a][4] * m) + "px"
-                }), f.find(".head").css({
-                    width: Math.floor(J[a][5] * m) + "px",
-                    height: Math.floor(J[a][5] * m) + "px",
-                    top: -Math.floor(J[a][9] * m) + "px"
-                }), f.find(".face").css({
-                    width: Math.floor(J[a][6] * m) + "px",
-                    height: Math.floor(J[a][6] * m) + "px"
-                }), f.find(".mouse").css({
-                    width: Math.floor(J[a][7] * m) + "px",
-                    "border-radius": "0px 0px " + Math.floor(J[a][7] * m) + "px " + Math.floor(J[a][7] * m) + "px"
-                }), f.find(".m").css({
-                    width: Math.floor(J[a][8] * m) + "px"
-                })), 13 === b && (f.find(".body").css({
-                    width: d + "px",
-                    height: e + "px"
-                }), f.find(".head").css({
-                    width: Math.floor(J[a][3] * m) + "px",
-                    height: Math.floor(J[a][4] * m) + "px"
-                }), f.find(".half").css({
-                    width: Math.floor(J[a][5] * m) + "px",
-                    height: Math.floor(J[a][6] * m) + "px"
-                }), f.find(".mouse").css({
-                    top: Math.floor(J[a][7] * m) + "px"
-                }), f.find(".m").css({
-                    width: Math.floor(J[a][8] * m) + "px",
-                    top: Math.floor(J[a][9] * m) + "px"
-                }), f.find(".strip1, .strip2").css({
-                    width: Math.floor(J[a][10] * m) + "px"
                 }))
             }
         }, this.switchHero = function(a) {
             this.hero = parseInt(a, 10) || this.hero, store("hero", this.hero);
             var b = J[this.hero - 1];
-            d = Math.round(b[0] * m), e = Math.round(b[1] * m), f = b[2], g = p + f, h = o - d - t - q, this.$heros.hide(), this.$hero = $(".hero-p.hero" + this.hero).css({
+            d = Math.round(b[0] * m), e = Math.round(b[1] * m), f = b[2], g = p + f, h = o - d - t - q, this.$heros.hide(), this.$hero = $(".hero-p.hero" + this.hero).show().css({
                 bottom: g + "px",
                 transform: "translate3d(" + (k - d) / 2 + "px, 0, 0)",
                 "-webkit-transform": "translate3d(" + (k - d) / 2 + "px, 0, 0)"
-            }).show(), this.$feet = this.$hero.find(".foot")
+            }), this.$feet = this.$hero.find(".foot")
         }, this.bindEvents = function() {
             var a = this;
             $(".btn-play").on(I, function() {
