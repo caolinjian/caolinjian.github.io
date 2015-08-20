@@ -8,11 +8,19 @@ body {
 
 #mainDiv {
     max-width: 640px;
-    margin:auto;
+    margin: auto;
 }
-#content{
-    margin-top: 20px;
+
+#content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    margin: auto;
 }
+
 #loveHeart {
     width: 640px;
     height: 600px
@@ -95,7 +103,6 @@ body {
     color: #3f7f5f
 }
 
-
 #errorMsg {
     width: 100%;
     text-align: center;
@@ -104,4 +111,3 @@ body {
     top: 100px;
     left: 0
 }
-
