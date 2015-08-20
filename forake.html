@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>forake</title>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="target-densitydpi=device-dpi, width=640px, user-scalable=no">
+    <style type="text/css">
+    @font-face {
+        font-family: digit;
+        src: url('static/digital-7_mono.ttf') format("truetype");
+    }
+    </style>
+    <link href="static/css/default.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="static/js/jquery.js"></script>
+    <script type="text/javascript" src="static/js/garden.js"></script>
+    <script type="text/javascript" src="static/js/functions.js"></script>
+    <script>
+    $(function() {
+        var DEFAULT_WIDTH = 640,
+            ua = navigator.userAgent.toLowerCase(),
+            deviceWidth = window.screen.width,
+            devicePixelRatio = window.devicePixelRatio || 1,
+            targetDensitydpi;
+        if (ua.indexOf("android") !== -1 && parseFloat(ua.slice(ua.indexOf("android") + 8)) < 4) {
+            targetDensitydpi = DEFAULT_WIDTH / deviceWidth * devicePixelRatio * 160;
+            $('meta[name="viewport"]').attr('content', 'target-densitydpi=' + targetDensitydpi +
+                ', width=device-width, user-scalable=no');
+        }
+    });
+    </script>
+</head>
+
+<body>
+    <div id="mainDiv">
+        <div id="content">
+            <div id="loveHeart">
+                <canvas id="garden"></canvas>
+                <div id="words">
+                    <div id="messages">
+                        姑娘，谢谢你那么迷人
+                    </div>
+                    <div id="loveu">
+                        Love u forever and ever.
+                        <br/>
+                        <div class="signature">- Jiansheng</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var offsetX = $("#loveHeart").width() / 2;
+    var offsetY = $("#loveHeart").height() / 2 - 55;
+
+    if (!document.createElement('canvas').getContext) {
+        var msg = document.createElement("div");
+        msg.id = "errorMsg";
+        msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+        document.body.appendChild(msg);
+        $("#code").css("display", "none")
+        document.execCommand("stop");
+    } else {
+        startHeartAnimation();
+
+        adjustCodePosition();
+        setTimeout(function() {
+            $("#messages").typewriter();
+        }, 5000)
+    }
+    </script>
+</body>
+
+</html>
