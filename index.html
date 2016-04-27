@@ -6,7 +6,7 @@
     <meta name="renderer" content="webkit">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cube</title>
-    <script src="//cdn.bootcss.com/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <script src="http://cdn.bootcss.com/prefixfree/1.0.7/prefixfree.min.js"></script>
     <style>
         html,
         body {
@@ -27,6 +27,54 @@
             }
             95%,to {
                 transform: rotateX(35deg) rotateY(315deg);
+            }
+        }
+        @keyframes face1 {
+            from{
+                transform: translateZ(.5em);
+            }
+            to {
+                transform: translateZ(.25em);
+            }
+        }
+        @keyframes face2 {
+            from{
+                transform: translateX(.5em) rotateY(90deg);
+            }
+            to {
+                transform: translateX(2.5em) rotateY(90deg);
+            }
+        }
+        @keyframes face3 {
+            from{
+                transform: translateY(.5em) rotateX(90deg);
+            }
+            to {
+                transform: translateY(2.5em) rotateX(90deg);
+            }
+        }
+        @keyframes face4 {
+            from{
+                transform: translateX(-.5em) rotateY(90deg);
+            }
+            to {
+                transform: translateX(-2.5em) rotateY(90deg);
+            }
+        }
+        @keyframes face5 {
+            from{
+                transform: translateY(-.5em) rotateX(90deg);
+            }
+            to {
+                transform: translateY(-2.5em) rotateX(90deg);
+            }
+        }
+        @keyframes face6 {
+            from{
+                transform: translateZ(-0.5em);
+            }
+            to {
+                transform: translateZ(-2.5em);
             }
         }
         .box,.box-inner {
@@ -58,34 +106,62 @@
         }
         .face:nth-child(1) {
             transform: translateZ(.5em);
+            transition: transform 0.5s ease-in-out;
         }
 
         .face:nth-child(2) {
             transform: translateX(.5em) rotateY(90deg);
             background: rgba(0, 255, 0, 0.3);
+            transition: transform 0.5s ease-in-out 0.25s;
         }
 
         .face:nth-child(3) {
             transform: translateY(.5em) rotateX(90deg);
+            transition: transform 0.5s ease-in-out 0.25s;
         }
 
         .face:nth-child(4) {
             transform: translateX(-.5em) rotateY(90deg);
             background:rgba(0, 0, 255, 0.3);
+            transition: transform 0.5s ease-in-out 0.5s;
         }
 
         .face:nth-child(5) {
             transform: translateY(-.5em) rotateX(90deg);
+            transition: transform 0.5s ease-in-out 0.25s;
         }
 
         .face:nth-child(6) {
             transform: translateZ(-.5em);
             background:rgba(255, 0, 0, 0.3);
+            transition: transform 0.5s ease-in-out;
+        }
+        .box-wrap:hover .face:nth-child(1){
+            transform: translateZ(2.5em);
+        }
+        .box-wrap:hover .face:nth-child(2) {
+            transform: translateX(2.5em) rotateY(90deg);
+        }
+        .box-wrap:hover .face:nth-child(3) {
+            transform: translateY(2.5em) rotateX(90deg);
+        }
+
+        .box-wrap:hover .face:nth-child(4) {
+            transform: translateX(-2.5em) rotateY(90deg);
+        }
+
+        .box-wrap:hover .face:nth-child(5) {
+            transform: translateY(-2.5em) rotateX(90deg);
+        }
+
+        .box-wrap:hover .face:nth-child(6) {
+            transform: translateZ(-2.5em);
         }
     </style>
 </head>
 
 <body>
+    <div class="box-wrap">
     <div class="box">
         <div class="face"></div>
         <div class="face"></div>
@@ -102,6 +178,7 @@
         <div class="face"></div>
         <div class="face"></div>
     </div>
+</div>
 </body>
 
 </html>
