@@ -8,6 +8,7 @@ var b = {
     'abd_dsa': 4
 };
 
+
 function ads() {
     var c = 2;
     return c + a + b.a;
