@@ -1,255 +1,104 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <meta name="renderer" content="webkit">
-        <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-        <title>Cube</title>
-        <style>
-        /*@-webkit-keyframes slowspin {
-            0% {
-                -webkit-transform: rotateX(-33.5deg) rotateY(45deg);
-                transform: rotateX(-33.5deg) rotateY(45deg)
-            }
-            10%, to {
-                -webkit-transform: rotateX(-33.5deg) rotateY(225deg);
-                transform: rotateX(-33.5deg) rotateY(225deg)
-            }
-        }
-        @keyframes slowspin {
-            0% {
-                -webkit-transform: rotateX(-33.5deg) rotateY(45deg);
-                transform: rotateX(-33.5deg) rotateY(45deg)
-            }
-            10%, to {
-                -webkit-transform: rotateX(-33.5deg) rotateY(225deg);
-                transform: rotateX(-33.5deg) rotateY(225deg)
-            }
-        }
-        @-webkit-keyframes fastspin {
-            0% {
-                -webkit-transform: rotateX(-33.5deg) rotateY(45deg);
-                transform: rotateX(-33.5deg) rotateY(45deg)
-            }
-            10%, to {
-                -webkit-transform: rotateX(-33.5deg) rotateY(-315deg);
-                transform: rotateX(-33.5deg) rotateY(-315deg)
-            }
-        }
-        @keyframes fastspin {
-            0% {
-                -webkit-transform: rotateX(-33.5deg) rotateY(45deg);
-                transform: rotateX(-33.5deg) rotateY(45deg)
-            }
-            10%, to {
-                -webkit-transform: rotateX(-33.5deg) rotateY(-315deg);
-                transform: rotateX(-33.5deg) rotateY(-315deg)
-            }
-        }*/
-
-        .logo {
-            width: 100%;
-            height: 220px;
-            position: fixed;
-            overflow: hidden;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin: auto;
-        }
-        .cube {
-            width: 100%;
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cube</title>
+    <script src="//cdn.bootcss.com/prefixfree/1.0.7/prefixfree.min.js"></script>
+    <style>
+        html,
+        body {
             height: 100%;
-            padding: 0;
-            margin: -50px 0;
-            -webkit-transform-origin: 50px 50px;
-            transform-origin: 50px 50px;
-            -webkit-transform: rotateX(-33.5deg) rotateY(45deg);
-            transform: rotateX(-33.5deg) rotateY(45deg);
-            -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-            -webkit-animation: slowspin 10s ease-in-out infinite 2s;
-            animation: slowspin 10s ease-in-out infinite 2s;
-            margin: -50px 0 0 -50px;
-            top: 50%;
-            left: 50%
         }
-        .cube, .cube li {
+        @keyframes box {
+            from,5% {
+                transform: rotateX(35deg) rotateY(-45deg);
+            }
+            20%,30% {
+                transform: rotateX(35deg) rotateY(45deg);
+            }
+            45%,55% {
+                transform: rotateX(35deg) rotateY(135deg);
+            }
+            70%,80% {
+                transform: rotateX(35deg) rotateY(225deg);
+            }
+            95%,to {
+                transform: rotateX(35deg) rotateY(315deg);
+            }
+        }
+        .box,.box-inner {
+            font-size: 100px;
             position: absolute;
-            display: block
-        }
-        .cube li {
-            width: 75pt;
-            height: 75pt;
-            transition: -webkit-transform 1s ease-in-out;
-            transition: transform 1s ease-in-out
-        }
-        .cube .back, .cube .front, .cube .left, .cube .right, .cube .top {
-            background: radial-gradient(transparent 30%, rgba(16, 47, 91, .2) 100%)
-        }
-        .cube li:after {
-            content: "";
-            display: block;
-            position: absolute;
-            width: 75pt;
-            height: 75pt;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            background-color: rgba(126, 169, 232, .5);
-            transition: -webkit-transform 1s ease-in-out;
-            transition: transform 1s ease-in-out
-        }
-        .cube .front {
-            -webkit-transform: translateZ(50px);
-            transform: translateZ(50px)
-        }
-        .cube .back {
-            -webkit-transform: rotateX(-180deg) translateZ(50px);
-            transform: rotateX(-180deg) translateZ(50px);
-        }
-        .cube .right {
-            -webkit-transform: rotateY(90deg) translateZ(50px);
-            transform: rotateY(90deg) translateZ(50px)
-        }
-        .cube .left {
-            -webkit-transform: rotateY(-90deg) translateZ(50px);
-            transform: rotateY(-90deg) translateZ(50px)
-        }
-        .cube .top {
-            -webkit-transform: rotateX(90deg) translateZ(50px);
-            transform: rotateX(90deg) translateZ(50px)
-        }
-        .cube .top:after {
-            background-color: rgba(152, 186, 237, .5)
-        }
-        .cube .bottom {
-            -webkit-transform: rotateX(-90deg) translateZ(50px);
-            transform: rotateX(-90deg) translateZ(50px)
-        }
-        .cube .floor:after {
-            display: none
-        }
-        .cube .floor {
-            box-shadow: -300px 0 50px rgba(0, 0, 0, .3);
-            -webkit-backface-visibility: visible;
-            backface-visibility: visible;
-            width: 110px;
-            height: 110px;
-            left: 295px;
-            background-color: transparent;
-            -webkit-transform: rotateX(-90deg) translateZ(60px);
-            transform: rotateX(-90deg) translateZ(60px)
-        }
-        .cube-inner {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: -25px 0;
+            width: 1em;
+            height: 1em;
             top: 50%;
             left: 50%;
-            -webkit-transform-origin: 25px 25px;
-            transform-origin: 25px 25px;
-            margin: -25px 0 0 -25px;
-            -webkit-transform: rotateX(-33.5deg) rotateY(45deg);
-            transform: rotateX(-33.5deg) rotateY(45deg);
-            -webkit-transform-style: preserve-3d;
+            margin: -.5em 0 0 -.5em;
             transform-style: preserve-3d;
-            -webkit-animation: fastspin 10s ease-in-out infinite 2s;
-            animation: fastspin 10s ease-in-out infinite 2s
+            animation: box 10s ease-in-out infinite;
+            transform: rotateX(35deg) rotateY(-45deg);
         }
-        .cube-inner, .cube-inner li {
+        .box-inner{
+            font-size: 50px;
+            animation: box 10s ease-in-out  infinite reverse;
+        }
+        .face {
             position: absolute;
-            display: block
+            top: 0;
+            left: 0;
+            width: 1em;
+            height: 1em;
+            box-sizing: border-box;
+            box-shadow: 0px 0 2px rgba(0, 0, 0, .1);
+            line-height: 1em;
+            text-align: center;
         }
-        .cube-inner li {
-            width: 50px;
-            height: 50px;
-            transition: -webkit-transform 1s ease-in-out;
-            transition: transform 1s ease-in-out
-        }
-        .cube-inner .back, .cube-inner .front, .cube-inner .left, .cube-inner .right, .cube-inner .top {
-            background: radial-gradient(transparent 30%, rgba(5, 17, 53, .2) 100%)
-        }
-        .cube-inner li:after {
-            content: "";
-            display: block;
-            position: absolute;
-            width: 50px;
-            height: 50px;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            background-color: rgba(16, 58, 177, .5);
-            transition: -webkit-transform 1s ease-in-out;
-            transition: transform 1s ease-in-out
-        }
-        .cube-inner .front {
-            -webkit-transform: translateZ(25px);
-            transform: translateZ(25px)
-        }
-        .cube-inner .back {
-            -webkit-transform: rotateX(-180deg) translateZ(25px);
-            transform: rotateX(-180deg) translateZ(25px)
-        }
-        .cube-inner .right {
-            -webkit-transform: rotateY(90deg) translateZ(25px);
-            transform: rotateY(90deg) translateZ(25px)
-        }
-        .cube-inner .left {
-            -webkit-transform: rotateY(-90deg) translateZ(25px);
-            transform: rotateY(-90deg) translateZ(25px)
-        }
-        .cube-inner .top {
-            -webkit-transform: rotateX(90deg) translateZ(25px);
-            transform: rotateX(90deg) translateZ(25px)
-        }
-        .cube-inner .top:after {
-            background-color: rgba(22, 78, 234, .5)
-        }
-        .cube-inner .bottom {
-            -webkit-transform: rotateX(-90deg) translateZ(25px);
-            transform: rotateX(-90deg) translateZ(25px)
-        }
-        .cube-inner .floor:after {
-            display: none
-        }
-        .cube-inner .floor {
-            box-shadow: -300px 0 50px rgba(0, 0, 0, .3);
-            -webkit-backface-visibility: visible;
-            backface-visibility: visible;
-            width: 60px;
-            height: 60px;
-            left: 295px;
-            background-color: transparent;
-            -webkit-transform: rotateX(-90deg) translateZ(35px);
-            transform: rotateX(-90deg) translateZ(35px)
+        .face:nth-child(1) {
+            transform: translateZ(.5em);
         }
 
-        </style>
-    </head>
+        .face:nth-child(2) {
+            transform: translateX(.5em) rotateY(90deg);
+            background: rgba(0, 255, 0, 0.3);
+        }
 
-    <body>
-        <div class=logo>
-            <ul class=cube-inner>
-                <li class=front></li>
-                <li class=back></li>
-                <li class=right></li>
-                <li class=left></li>
-                <li class=top></li>
-                <li class=bottom></li>
-            </ul>
-            <ul class=cube>
-                <li class=front></li>
-                <li class=back></li>
-                <li class=right></li>
-                <li class=left></li>
-                <li class=top></li>
-                <li class=bottom></li>
-                <li class=floor></li>
-            </ul>
-        </div>
-    </body>
+        .face:nth-child(3) {
+            transform: translateY(.5em) rotateX(90deg);
+        }
+
+        .face:nth-child(4) {
+            transform: translateX(-.5em) rotateY(90deg);
+            background:rgba(0, 0, 255, 0.3);
+        }
+
+        .face:nth-child(5) {
+            transform: translateY(-.5em) rotateX(90deg);
+        }
+
+        .face:nth-child(6) {
+            transform: translateZ(-.5em);
+            background:rgba(255, 0, 0, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="face"></div>
+        <div class="face"></div>
+        <div class="face"></div>
+        <div class="face"></div>
+        <div class="face"></div>
+        <div class="face"></div>
+    </div>
+    <div class="box-inner">
+        <div class="face"></div>
+        <div class="face"></div>
+        <div class="face"></div>
+        <div class="face"></div>
+        <div class="face"></div>
+        <div class="face"></div>
+    </div>
+</body>
 
 </html>
