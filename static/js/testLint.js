@@ -12,4 +12,4 @@ function ads() {
     var c = 2;
     return c + a + b.a;
 }
-console.log(ads())
+console.log(ads());

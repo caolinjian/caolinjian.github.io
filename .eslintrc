@@ -36,7 +36,7 @@
         "globalReturn": true,
         "experimentalObjectRestSpread": true
     },
-    
+
     "rules": {
         "comma-dangle": [2, "never"],
         "no-cond-assign": 0,
@@ -201,7 +201,6 @@
         "keyword-spacing": [2, {"before": true, "after": true}],
         "space-in-parens": [2, never],
         "space-infix-ops": [2, {"int32Hint": false}],
-        "space-return-throw-case": 1,
         "space-unary-ops": [1, {words: true, nonwords: false}],
         "spaced-comment": [1, always],
         "wrap-regex": 0,
