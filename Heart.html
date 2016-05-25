@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalabel=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Heart</title>
+        <style>
+            svg {
+                margin: auto;
+                display: block;
+            }
+            .axis--x {
+                display: none;
+            }
+            .axis--y {
+                display: none;
+            }
+            .axis path,
+            .axis line {
+                fill: none;
+                stroke: #000;
+                shape-rendering: crispEdges;
+            }
+            .line {
+                fill: none;
+                stroke: red;
+                stroke-width: 1.5px;
+            }
+            .dot {
+                fill: white;
+                stroke: red;
+                stroke-width: 1.5px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script>
+
+            var heartData = d3.range(-1200, 1200).map(function(i) {
+                let x = i / 400;
+                let y = Math.sqrt(Math.abs(x)) - Math.sqrt(Math.cos(x)) * Math.cos(60 * x);
+                return y && y > -0.9 ? {
+                    x: x,
+                    y: y
+                } : null;
+            });
+            var lineData = heartData.map((item)=>{
+                return item?{
+                    x:item.x,
+                    y:1
+                }:null
+            })
+            var margin = {
+                    top: 40,
+                    right: 40,
+                    bottom: 40,
+                    left: 40
+                },
+                width = 960 - margin.left - margin.right,
+                height = 500 - margin.top - margin.bottom;
+
+            var x = d3.scaleLinear()
+                .domain([-3, 3])
+                .range([0, width]);
+
+            var y = d3.scaleLinear()
+                .domain([-1, 2])
+                .range([height, 0]);
+
+            var line = d3.line()
+                 .defined(function(d) { return d; })
+                .x(function(d) {
+                    return x(d.x)
+                })
+                .y(function(d) {
+                    return y(d.y)
+                });
+
+            var svg = d3.select("body").append("svg")
+                .datum(lineData)
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom)
+                .append("g")
+                .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+            svg.append("g")
+                .attr("class", "axis axis--x")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom().scale(x));
+
+            svg.append("g")
+                .attr("class", "axis axis--y")
+                .call(d3.axisLeft().scale(y));
+
+            svg.append("path")
+                .attr("class", "line")
+                .attr("translate", "all 0.5 ease-in-out")
+                .attr("d", line)
+                .transition()
+                    .delay(1000)
+                    .duration(800)
+                    .attr("d", line(heartData));
+
+            // setTimeout(() => {
+            //     svg.selectAll(".dot").remove()
+            //         .data(heartData.filter(function(d, index) {
+            //             return index % 54 == 0 && d;
+            //         }))
+            //         .enter().append("circle")
+            //         .attr("class", "dot")
+            //         .attr("cx", line.x())
+            //         .attr("cy", line.y())
+            //         .attr("r", 3.5);
+            // }, 2000)
+        </script>
+    </body>
+
+</html>
