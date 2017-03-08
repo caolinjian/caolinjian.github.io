@@ -54,16 +54,15 @@
                 }:null
             })
             var margin = {
-                    top: 40,
-                    right: 40,
-                    bottom: 40,
-                    left: 40
+                    top: 20,
+                    right: 20,
+                    bottom: 20,
+                    left: 20
                 },
-                width = 960 - margin.left - margin.right,
-                height = 500 - margin.top - margin.bottom;
-
+                width = document.body.clientWidth*0.8 - margin.left - margin.right,
+                height = document.body.clientWidth*0.625 - margin.top - margin.bottom;
             var x = d3.scaleLinear()
-                .domain([-3, 3])
+                .domain([-2, 2])
                 .range([0, width]);
 
             var y = d3.scaleLinear()
