@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalabel=no">
@@ -10,40 +11,45 @@
                 margin: auto;
                 display: block;
                 position: fixed;
-                top:0;
-                bottom:0;
+                top: 0;
+                bottom: 0;
                 right: 0;
-                left:0;
+                left: 0;
             }
+
             .axis--x {
                 display: none;
             }
+
             .axis--y {
                 display: none;
             }
+
             .axis path,
             .axis line {
                 fill: none;
                 stroke: #000;
                 shape-rendering: crispEdges;
             }
+
             .line {
                 fill: none;
                 stroke: red;
                 stroke-width: 1.5px;
             }
+
             .dot {
                 fill: white;
                 stroke: red;
                 stroke-width: 1.5px;
             }
+
         </style>
     </head>
 
     <body>
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script>
-
             var heartData = d3.range(-1200, 1200).map(function(i) {
                 let x = i / 400;
                 let y = Math.sqrt(Math.abs(x)) - Math.sqrt(Math.cos(x)) * Math.cos(60 * x);
@@ -52,11 +58,11 @@
                     y: y
                 } : null;
             });
-            var lineData = heartData.map((item)=>{
-                return item?{
-                    x:item.x,
-                    y:1
-                }:null
+            var lineData = heartData.map((item) => {
+                return item ? {
+                    x: item.x,
+                    y: 1
+                } : null
             })
             var margin = {
                     top: 20,
@@ -64,8 +70,8 @@
                     bottom: 20,
                     left: 20
                 },
-                width = document.body.clientWidth*0.8 - margin.left - margin.right,
-                height = document.body.clientWidth*0.625 - margin.top - margin.bottom;
+                width = document.body.clientWidth * 0.8 - margin.left - margin.right,
+                height = document.body.clientWidth * 0.625 - margin.top - margin.bottom;
             var x = d3.scaleLinear()
                 .domain([-2, 2])
                 .range([0, width]);
@@ -75,7 +81,9 @@
                 .range([height, 0]);
 
             var line = d3.line()
-                 .defined(function(d) { return d; })
+                .defined(function(d) {
+                    return d;
+                })
                 .x(function(d) {
                     return x(d.x)
                 })
@@ -104,9 +112,9 @@
                 .attr("translate", "all 0.5 ease-in-out")
                 .attr("d", line)
                 .transition()
-                    .delay(1000)
-                    .duration(800)
-                    .attr("d", line(heartData));
+                .delay(1000)
+                .duration(800)
+                .attr("d", line(heartData));
 
             // setTimeout(() => {
             //     svg.selectAll(".dot").remove()
@@ -119,6 +127,24 @@
             //         .attr("cy", line.y())
             //         .attr("r", 3.5);
             // }, 2000)
+
+        </script>
+        <script>
+            (function(i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function() {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-93223334-1', 'auto');
+            ga('send', 'pageview');
+
         </script>
     </body>
 
