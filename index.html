@@ -12,7 +12,7 @@
         svg {
             margin: auto;
             display: block;
-            position: fixed;
+            position: absolute;
             top: 0;
             bottom: 0;
             right: 0;
@@ -45,7 +45,9 @@
             stroke: red;
             stroke-width: 1.5px;
         }
-
+        .svg-content{
+            position: relative;
+        }
     </style>
   </head>
   <body>
@@ -54,7 +56,8 @@
     </section>
 
     <section class="main-content">
-        <h2><a href="/blog">博客</a>    </h2>
+        <h2><a href="/blog">博客</a></h2>
+        <div class="svg-content"></div>
     </section>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script>
@@ -78,8 +81,8 @@
                 bottom: 20,
                 left: 20
             },
-            width = document.body.clientWidth * 0.8 - margin.left - margin.right,
-            height = document.body.clientWidth * 0.625 - margin.top - margin.bottom;
+            width = document.body.clientWidth * 0.6 - margin.left - margin.right,
+            height = document.body.clientWidth * 0.46875 - margin.top - margin.bottom;
         var x = d3.scaleLinear()
             .domain([-2, 2])
             .range([0, width]);
@@ -99,7 +102,7 @@
                 return y(d.y)
             });
 
-        var svg = d3.select("body").append("svg")
+        var svg = d3.select(".svg-content").append("svg")
             .datum(lineData)
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
